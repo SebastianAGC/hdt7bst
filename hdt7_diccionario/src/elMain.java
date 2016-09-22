@@ -2,6 +2,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,16 +18,22 @@ public class elMain
 {
     
 Diccionario eldiccionario = new Diccionario();
+BinaryTree dic;
 
-    public static String[] leerDiccionario(){
+    public void leerDiccionario(){
         int i=0;
-        String[] linea = new String[41];
+        ArrayList<String> linea= new ArrayList();
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\diccionario.txt"));
-            while(i<40){
-                linea[i] = br.readLine();
+            while(i<linea.size()){
+                Association<String, String> translation;
+                linea.add(br.readLine());
                 i++;
+                String tmp = linea.get(i);
+                String[] inglesespanol = tmp.split(", ");
+                translation= new Association(inglesespanol[0], inglesespanol[1]);
+                dic.insert(translation);
             }
         } catch (IOException e) {
                 e.printStackTrace();
@@ -38,7 +45,6 @@ Diccionario eldiccionario = new Diccionario();
                 ex.printStackTrace();
             }
         }
-        return linea;
     }
     
 }
