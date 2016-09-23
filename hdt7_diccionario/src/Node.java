@@ -1,9 +1,27 @@
-public class Node<T> {
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
-  public T value;
-  public Node left;
-  public Node right;
-  public Node(T value) {
-    this.value = value;
-  }
+/**
+ *
+ * @author Rodrigo Arriaza;
+ */
+public class Node<E> {
+    
+	E data;
+	Node left;
+	Node right;	
+	public Node(E data){
+		this.data = data;
+		left = null;
+		right = null;
+	}
+        public E getValue()
+	// post: returns value associated with this node
+	{
+		return data;
+	}
+
 }

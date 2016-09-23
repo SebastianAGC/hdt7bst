@@ -1,0 +1,8 @@
+house, casa
+dogs, perros
+do, hacer
+my, mi
+homework, tarea
+woman, mujer
+town, pueblo
+yes, si
