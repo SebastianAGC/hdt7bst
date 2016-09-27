@@ -19,36 +19,10 @@ public class elMain
 {
     
 //static BinaryTree<Association> arbol = new BinaryTree();
-static BinaryTree<Association<String, String>> diccionario = new BinaryTree();
+static BinarySearchTree<Association<String, String>> diccionario = new BinarySearchTree();
 static Diccionario dictionary = new Diccionario();
 static String oracion="";
 
-    public static void leerDiccionario(){                   
-        /*
-        int i=0;
-        ArrayList<String> linea= new ArrayList();
-        BufferedReader br = null;
-        try {
-            br = new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\diccionario.txt"));
-            while(i<linea.size()){
-                linea.add(br.readLine());
-                String tmp = linea.get(i);
-                arbol.insert(tmp);
-                String[] inglesespanol = tmp.split(", ");
-                dictionary.put(inglesespanol[0], inglesespanol[1]);
-                i++;
-            }
-        } catch (IOException e) {
-                e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }*/
-    }
     public static void crearDiccionario(){
         BufferedReader br = null;
         try {
@@ -83,12 +57,12 @@ static String oracion="";
             String tmp = br.readLine();
             String[] palabras = tmp.split(" ");
             while(i<palabras.length){
-                if (dictionary.searchWord(palabras[i],diccionario)==null){
+                if (!diccionario.find(palabras[i])){
                     oracion=oracion+"*"+palabras[i]+"* ";
                 }
                 else
                 {
-                    oracion = oracion +dictionary.searchWord(palabras[i],diccionario)+" ";
+                    oracion = oracion + dictionary.FindAndDisplay(diccionario, palabras[i]) +" " ;
                 }
                 i++;               
             }
@@ -103,54 +77,12 @@ static String oracion="";
             }
         }
     }
-    /*
-    public static String prueba(){
-        String prueba = "";
-        Association<String, String> probando = new Association("woman", "mujer");
-        prueba = prueba + probando.getValue();
-        return prueba;
-    }*/
-    
+      
     public static void main(String[] args){
-        BufferedReader br = null;
-        ArrayList<String> pruebas=new ArrayList();
-        ArrayList<Association<String, String>> prueba1 = new ArrayList();
-        String read;
-        BinarySearchTree<Association<String, String>> arbolprueba = new BinarySearchTree();
-        try{
-              br =   new BufferedReader(new FileReader(System.getProperty("user.dir") + "\\diccionario.txt"));
-              while ((read = br.readLine())!=null){
-                  String[] separar=read.split(", ");
-                  pruebas.add(separar[0]+" = "+separar[1]);
-                  Association<String, String> asoc = new Association(separar[0], separar[1]);
-                  prueba1.add(asoc);
-                  arbolprueba.insert(asoc);
-                //read=read+br.readLine();
-        }
-        } catch (IOException e) {
-                e.printStackTrace();
-        } finally {
-            try {
-                if (br != null)
-                    br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
         crearDiccionario();
-        //BinaryTree<Association<String, String>> prueba = new BinaryTree();
-        //prueba = diccionario.left();
-        Node<Association> nodoprueba = new Node(prueba1.get(3));
-        //String pruebaread = 
-        //oracion=""+(prueba.value(prueba.root)).getValue();
-        //traducir();
-        //System.out.println(prueba());
-        //System.out.println(oracion);
-        System.out.println(pruebas.get(2));
-        //System.out.println((dictionary.search("dogs", nodoprueba)).getValue()+"");
-        System.out.println(arbolprueba.find(prueba1.get(3)));
-        System.out.println(arbolprueba.display(arbolprueba.root.right));
-        System.out.println(arbolprueba.find("town"));
-        System.out.println("house".compareTo("dogs"));
+        traducir();
+        diccionario.printInorder(); //esto ordena un arraylist 
+        System.out.println(diccionario.getTranslations()); //esto imprime el arraylist en orden
+        System.out.println(oracion);
     }
 }

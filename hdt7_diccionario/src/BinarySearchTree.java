@@ -1,9 +1,13 @@
+
+import java.util.ArrayList;
+
 public class BinarySearchTree<E> {
 	public Node root;
 	public BinarySearchTree(){
 		this.root = null;
 	}
-        private Node current;
+        private Node<E> current;
+        ArrayList<String> content = new ArrayList();
 	
 	public boolean find(E id){
 		Node<E> current = root;
@@ -19,14 +23,14 @@ public class BinarySearchTree<E> {
 		}
 		return false;
 	}
-        //ya funciona :D
+        
         public boolean find(String key)
         {
 		Node<Association> current = root;
 		while(current!=null){
                     String thekey = current.data.KeyToString();
                     if(thekey.compareTo(key)==0){
-                            //setCurrent(current);
+                            setCurrent(current);
                         return true;
                     }else if(thekey.compareTo(key)>0){
                             current = current.left;
@@ -39,8 +43,8 @@ public class BinarySearchTree<E> {
         public void setCurrent(Node current){
             this.current=current;
         }
-        public Node getCurrent(){
-            return current;
+        public E getCurrent(){
+            return current.data;
         }
         /*
 	public boolean delete(int id){
@@ -150,6 +154,20 @@ public class BinarySearchTree<E> {
 			}
 		}
 	}
+        public void inOrder(Node root) { 
+            
+            root=this.root;
+            if(root.left != null) 
+            { 
+                inOrder(root.left);
+            }
+            content.add(root.data.toString());
+            inOrder(root.right); 
+        }
+        public ArrayList<String> getTranslations (){
+            return content;
+        }
+//Read more at http://www.java2blog.com/2014/07/binary-tree-inorder-traversal-in-java.html#kfz7RyIxkYLIacE0.99
         //funciona bien
 	public String display(Node root)
         {
@@ -161,22 +179,19 @@ public class BinarySearchTree<E> {
 	}
                 return res;
     }
-    /*
-public static void main(String arg[]){
-	BinarySearchTree b = new BinarySearchTree();
-	b.insert(3);b.insert(8);
-	b.insert(1);b.insert(4);b.insert(6);b.insert(2);b.insert(10);b.insert(9);
-	b.insert(20);b.insert(25);b.insert(15);b.insert(16);
-	System.out.println("Original Tree : ");
-	b.display(b.root);		
-	System.out.println("");
-	System.out.println("Check whether Node with value 4 exists : " + b.find(4));
-	System.out.println("Delete Node with no children (2) : " + b.delete(2));		
-	b.display(root);
-	System.out.println("\n Delete Node with one child (4) : " + b.delete(4));		
-	b.display(root);
-	System.out.println("\n Delete Node with Two children (10) : " + b.delete(10));		
-	b.display(root);
-    }
-}*/
+
+
+public void printInorder(){
+  printInOrderRec(root);
+  //System.out.println("");
 }
+private void printInOrderRec(Node currRoot){
+  if ( currRoot == null ){
+    return;
+  }
+  printInOrderRec(currRoot.left);
+  content.add(currRoot.data+"");
+  printInOrderRec(currRoot.right);
+}
+}
+

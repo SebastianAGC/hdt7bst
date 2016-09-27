@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Rodrigo Arriaza;
+ * @author Rodrigo Arriaza tomado de BlackBoard, agregue un metodo para buscar String en un arbol de Associations;
  */
 
  // A class for binding key/value pairs.
@@ -151,19 +151,5 @@ public class Association<K,V> implements Map.Entry<K,V>
         String llave = "";
         llave = ""+getKey();
         return llave;
-    }
-    /*
-...
-*/
-/*
-    public int compareTo(String o) {
-        return KeyToString().compareTo(o);
-    }
-
-    @Override
-    public int compareTo(Association<String, String> o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-  */ 
+    } 
 }
